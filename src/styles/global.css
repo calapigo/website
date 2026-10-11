@@ -9,3 +9,9 @@
 @theme inline {
   --font-sans: var(--font-quicksand);
 }
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+}

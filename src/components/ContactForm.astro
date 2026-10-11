@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 if (!key) throw new Error("PUBLIC_WEB3FORMS_KEY is not set");
 
@@ -51,17 +53,7 @@ const field =
   class="not-prose flex flex-1 flex-col items-center justify-center gap-4 text-center outline-none"
 >
   <div class="flex size-20 items-center justify-center rounded-full bg-green-600 text-white">
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="size-10"
-    >
-      <path d="M5 12.5l4.5 4.5L19 7.5" />
-    </svg>
+    <Icon name="lucide:check" class="size-10" aria-hidden="true" />
   </div>
   <p class="text-xl font-semibold">Thanks, your message was sent!</p>
 </div>
