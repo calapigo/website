@@ -1,0 +1,31 @@
+---
+import MobileMenu from "./MobileMenu.astro";
+import { siteName, links, url, isCurrent } from "../data/site";
+
+const path = Astro.url.pathname;
+const topLinks = links.filter((l) => l.path !== "/");
+---
+
+<header class="flex items-center justify-between gap-6">
+  <a href={url("/")} class="text-3xl font-black">
+    {siteName}
+  </a>
+
+  <nav aria-label="Primary" class="hidden md:block">
+    <ul class="flex flex-wrap gap-x-5 gap-y-1 text-md font-semibold">
+      {topLinks.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            aria-current={isCurrent(path, href) ? "page" : undefined}
+            class="hover:underline aria-[current=page]:font-bold aria-[current=page]:text-blue-700"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <MobileMenu />
+</header>

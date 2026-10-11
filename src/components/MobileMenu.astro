@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+import NavList from "./NavList.astro";
+---
+
+<button
+  type="button"
+  popovertarget="mobile-menu"
+  aria-label="Open menu"
+  class="border-4 rounded-lg border-wine bg-white p-2 md:hidden hover:cursor-pointer"
+>
+  <Icon name="lucide:menu" class="size-6" />
+</button>
+
+<nav
+  id="mobile-menu"
+  popover
+  aria-label="Mobile menu"
+  class="m-0 h-dvh w-[min(18rem,85vw)] inset-[0_0_0_auto]
+    border-l-4 border-wine bg-white p-4
+    translate-x-full open:translate-x-0 starting:open:translate-x-full
+    transition-[translate,overlay,display] transition-discrete duration-250 ease-out
+    backdrop:bg-black/40 backdrop:opacity-0 open:backdrop:opacity-100 starting:open:backdrop:opacity-0
+    backdrop:transition-[opacity,overlay,display] backdrop:transition-discrete backdrop:duration-250 backdrop:ease-out
+    md:hidden"
+>
+  <button
+    type="button"
+    popovertarget="mobile-menu"
+    popovertargetaction="hide"
+    aria-label="Close menu"
+    class="mb-4 ml-auto block p-2 hover:cursor-pointer"
+  >
+    <Icon name="lucide:x" class="size-6" />
+  </button>
+  <NavList />
+</nav>

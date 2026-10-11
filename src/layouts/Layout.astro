@@ -1,0 +1,64 @@
+---
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import type { Metadata } from "../types";
+import { siteName, url, defaultImage, defaultThemeColor } from "../data/site";
+import Header from "../components/Header.astro";
+import Banner from "../components/Banner.astro";
+import SideNav from "../components/SideNav.astro";
+
+interface Props {
+  meta: Metadata;
+}
+
+const { meta } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const image = new URL(url(meta.image ?? defaultImage), Astro.site);
+const imageAlt = meta.imageAlt ?? meta.title;
+const themeColor = meta.themeColor ?? defaultThemeColor;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Font cssVariable="--font-quicksand" preload />
+
+    <title>{meta.title} | Cal Apigo Music</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href={url("/sitemap-index.xml")} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {meta.noindex && <meta name="robots" content="noindex" />}
+
+    <meta name="theme-color" content={themeColor} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={imageAlt} />
+  </head>
+
+  <body class="bg-coral-blue">
+    <div class="mx-auto flex max-w-250 flex-col gap-5 px-4 py-6">
+      <Header />
+      <Banner />
+      <div class="grid gap-5 md:grid-cols-[16rem_1fr]">
+        <SideNav />
+        <main class="prose prose-p:font-medium max-w-none min-w-0 border-4 rounded-lg border-wine bg-white p-4 md:p-8 prose-headings:font-semibold prose-a:text-blue-700">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

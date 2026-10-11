@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  name: string;
+  handle: string;
+}
+const { href, name, handle } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center gap-4 rounded-xl border-4 border-wine bg-white p-4 hover:bg-sky-50"
+>
+  <div class="shrink-0 text-wine [&>svg]:size-8">
+    <slot />
+  </div>
+  <div class="min-w-0">
+    <h2 class="text-lg font-semibold">{name}</h2>
+    <p class="text-sm text-stone-600">{handle}</p>
+  </div>
+</a>

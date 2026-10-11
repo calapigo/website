@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { url } from "../data/site";
+import type { Metadata } from "../types";
+
+const meta: Metadata = {
+  title: "Home",
+  description: "Freelance musician and private teacher based in the San Fernando Valley.",
+};
+---
+
+<Layout {meta}>
+  <h1 class="text-center">Welcome to my page!</h1>
+  <p class="lead">Freelance musician and private teacher based in the San Fernando Valley</p>
+  <p>
+    Feel free to <a href={url("/contact/")}>reach out</a> for any inquiries and questions
+  </p>
+</Layout>

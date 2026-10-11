@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { url } from "../data/site";
+import type { Metadata } from "../types";
+
+const meta: Metadata = {
+  title: "Teaching Philosophy",
+  description:
+    "A self-taught trombonist’s approach to lessons: wide-ranging repertoire, technique tied to real music, and making music less daunting.",
+};
+---
+
+<Layout {meta}>
+  <h1>Teaching Philosophy</h1>
+
+  <p>
+    Growing up without private lessons and being a result of the LAUSD public school system, I am largely self-taught. I
+    was given the advice in middle school to play as wide a variety of music as possible and I really took that to
+    heart. At lunch and nutrition, you always could find me in the band room practicing, or more accurately, fooling
+    around and sight reading anything I could get my hands on.
+  </p>
+
+  <p>
+    In middle school, I would scrounge around the music cabinets and in high school I would search for music on the
+    internet. From playing out of the real book to reading method books front to back like a chapter book, I’ve read a
+    lot, and I pride myself on being a player that can do a bit of everything. A goal of mine is to show my students
+    everything the trombone has to offer, while also catering lessons towards their interests.
+  </p>
+
+  <p>
+    However in order to make music, I believe in consistent practice in technique. Technique can often feel overwhelming
+    and monotonous at times and I understand. To avoid this, I always make sure technique is relevant for actual music,
+    either currently being worked on or for a goal piece in the future. Fundamentals give players the freedom and
+    flexibility to play the music they want to play.
+  </p>
+
+  <p>
+    From being a section leader/principal trombonist in middle school, high school, and college, I can teach many
+    different skill levels. I understand that music is highly abstract to most people, but with thoughtful and precise
+    analogies, I aim to create good habits in a natural and memorable way. For examples of my teaching style, feel free
+    to look at my teaching packets in the <a href={url("/packets/")}>free resources</a> tab, which I often use with my
+    high school students to teach major ideas.
+  </p>
+
+  <p class="lead">
+    I always want to make music less daunting and more accessible, and I hope my website reflects that.
+  </p>
+</Layout>

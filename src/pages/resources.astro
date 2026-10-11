@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { url } from "../data/site";
+import type { Metadata } from "../types";
+
+const meta: Metadata = {
+  title: "Resources",
+  description:
+    "Free trombone resources: public domain method books, free sheet music sites, listening playlists, and practice tips.",
+};
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
+
+const methodBooks = [
+  {
+    name: "Arban’s Method",
+    href: "https://archive.org/details/arbansfamousmeth00arba/mode/2up",
+    text: "Highly effective for isolating techniques, especially articulation. I particularly like the double/triple tonguing, intervals, and duet sections.",
+  },
+  {
+    name: "Schlossberg Daily Drills and Routines",
+    href: "https://imslp.org/wiki/Daily_Drills_and_Technical_Studies_(Schlossberg%2C_Max)",
+    text: "Has patterns that will push you out of your comfort zone and expand your flexibility. Great for building range.",
+  },
+  {
+    name: "Bordogni/Rochut Melodious Etudes",
+    href: "https://imslp.org/wiki/120_Melodious_Etudes_(Rochut,_Joannes)",
+    text: "A collection of vocal etudes transcribed for trombone. Fantastic for learning lyrical phrasing and building consistent legato articulation.",
+  },
+  {
+    name: "Kopprasch",
+    href: "https://imslp.org/wiki/60_Etudes_for_Low-Horn%2C_Op.6_(Kopprasch%2C_Georg)",
+    text: "Go to “Arrangements and Transcriptions” and find “for trombone or bassoon”. A challenging group of etudes transcribed from french horn. Take it way slower than you think and focus on consistent articulation.",
+  },
+  {
+    name: "Real Book 5th Edition",
+    href: "https://ia903203.us.archive.org/4/items/fakebook_the-real-book---fifth-edition---f---bass-clef/therealbook-fifthedition-f-bassclef.pdf",
+    text: "Certainly not the prettiest, but I loved sight reading out of this. Find backing tracks on YouTube or buy iRealPro.",
+  },
+];
+
+const websites = [
+  {
+    name: "8notes",
+    href: "https://www.8notes.com/trombone/",
+    text: "Free music and backing tracks to play along with! Has lots of popular music from many styles.",
+  },
+  {
+    name: "IMSLP",
+    href: "https://imslp.org/",
+    text: "A large collection of public domain music.",
+  },
+  {
+    name: "TBZ Monthly",
+    href: "https://www.trombonezone.org/tbz-monthly/",
+    text: "Brad Edwards releases a newsletter every month and they are AMAZING!!! He always has an original melody, some technique exercise, a sneak peek at his new book (usually), and some words of wisdom.",
+  },
+];
+---
+
+<Layout {meta}>
+  <h1>MUSIC IS EXPENSIVE!</h1>
+  <p class="lead">
+    Lessons, instruments, gas money, sheet music, and the list goes on and on. It adds up fast, but there’s lots of
+    resources to take advantage of.
+  </p>
+
+  <h2>1) Public Domain Method Books</h2>
+  <p>Many of THE BEST method books are completely free!</p>
+  <ul>
+    {methodBooks.map(({ name, href, text }) => (
+      <li>
+        <a href={href} {...external}>
+          {name}
+        </a>
+        : {text}
+      </li>
+    ))}
+  </ul>
+
+  <h2>2) Free music websites</h2>
+  <ul>
+    {websites.map(({ name, href, text }) => (
+      <li>
+        <a href={href} {...external}>
+          {name}
+        </a>
+        : {text}
+      </li>
+    ))}
+  </ul>
+
+  <h2>3) Listen! Listen! LISTEN!!!!!</h2>
+  <p>
+    See playlists of my trombone listening recommendations here! I tried to include a wide variety of genres because the
+    trombone is a truly versatile instrument.
+  </p>
+
+  <iframe
+    title="Trombone listening recommendations on Spotify"
+    src="https://open.spotify.com/embed/playlist/5k2fEZtmP040LiZzg1svCQ"
+    class="h-88 w-full rounded-xl"
+    loading="lazy"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  ></iframe>
+
+  <div class="aspect-video mt-2 rounded-xl border border-wine overflow-clip">
+    <iframe
+      title="Trombone listening recommendations on YouTube"
+      src="https://www.youtube-nocookie.com/embed/videoseries?list=PLOtmg1axsgNIg2HKUUX_9mUktAOiIv5Jp"
+      class="size-full"
+      loading="lazy"
+      allow="encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <p>
+    Open the{" "}
+    <a href="https://www.youtube.com/playlist?list=PLOtmg1axsgNIg2HKUUX_9mUktAOiIv5Jp" {...external}>
+      YouTube link
+    </a>{" "}
+    in a new tab for the full playlist.
+  </p>
+
+  <h2>4) Band teachers!</h2>
+  <p>
+    Band rooms, especially if your school is old, often have tons of sheet music collecting dust. Ask your band teacher
+    for music they may have AND PLAY FOR THEM! Most will be more than happy to listen and give you pointers.
+  </p>
+
+  <h2>5) My packets!</h2>
+  <p>
+    For my high school students, I often use these packets to teach bigger ideas and a good thing to reference when
+    confused. See my <a href={url("/packets/")}>packets page</a>!
+  </p>
+</Layout>

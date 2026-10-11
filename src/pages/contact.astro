@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import type { Metadata } from "../types";
+
+const meta: Metadata = {
+  title: "Contact",
+  description: "Get in touch about lessons, performances, or any other questions.",
+};
+---
+
+<Layout {meta}>
+  <div class="flex h-full flex-col">
+    <h1 class="text-center">Contact</h1>
+    <ContactForm />
+  </div>
+</Layout>

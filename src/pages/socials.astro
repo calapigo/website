@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+import SocialCard from "../components/SocialCard.astro";
+import type { Metadata } from "../types";
+
+const meta: Metadata = {
+  title: "Socials",
+  description: "Find Cal on other platforms.",
+};
+---
+
+<Layout {meta}>
+  <h1 class="text-center">Socials</h1>
+
+  <div class="not-prose flex flex-col gap-6">
+    <SocialCard href="https://www.youtube.com/@cal1695" name="YouTube" handle="@cal1695">
+      <Icon name="simple-icons:youtube" class="size-8" />
+    </SocialCard>
+
+    <SocialCard href="https://www.instagram.com/calapigomusic/" name="Instagram" handle="@calapigomusic">
+      <Icon name="simple-icons:instagram" class="size-8" />
+    </SocialCard>
+  </div>
+</Layout>

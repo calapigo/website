@@ -1,0 +1,115 @@
+---
+const key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+if (!key) throw new Error("PUBLIC_WEB3FORMS_KEY is not set");
+
+const field =
+  "w-full rounded-lg border-2 border-wine bg-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-wine/40 disabled:opacity-60";
+---
+
+<form
+  data-contact-form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="not-prose flex flex-1 flex-col gap-4"
+>
+  <input type="hidden" name="access_key" value={key} />
+  <input type="hidden" name="subject" value="New inquiry on Cal Apigo Music" />
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <label class="flex flex-col gap-1">
+      <span class="font-medium">Name</span>
+      <input type="text" name="name" required autocomplete="name" class={field} />
+    </label>
+    <label class="flex flex-col gap-1">
+      <span class="font-medium">Email</span>
+      <input type="email" name="email" required autocomplete="email" class={field} />
+    </label>
+  </div>
+
+  <label class="flex flex-1 flex-col gap-1">
+    <span class="font-medium">Message</span>
+    <textarea name="message" required class:list={[field, "min-h-30 h-auto resize-y"]}></textarea>
+  </label>
+
+  <div class="flex items-center justify-between gap-4">
+    <p data-status role="status" class="text-sm"></p>
+    <button
+      type="submit"
+      class="rounded-lg bg-wine px-6 py-2 font-semibold text-white hover:bg-wine/90 disabled:opacity-60 hover:cursor-pointer"
+    >
+      Send
+    </button>
+  </div>
+</form>
+
+<div
+  data-success
+  hidden
+  tabindex="-1"
+  role="status"
+  class="not-prose flex flex-1 flex-col items-center justify-center gap-4 text-center outline-none"
+>
+  <div class="flex size-20 items-center justify-center rounded-full bg-green-600 text-white">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="size-10"
+    >
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  </div>
+  <p class="text-xl font-semibold">Thanks, your message was sent!</p>
+</div>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  const success = document.querySelector<HTMLElement>("[data-success]");
+  const status = form?.querySelector<HTMLElement>("[data-status]");
+
+  function setSending(sending: boolean) {
+    if (!form) return;
+    for (const el of Array.from(form.elements)) (el as HTMLInputElement).disabled = sending;
+  }
+
+  function show(message: string, isError = false) {
+    if (!status) return;
+    status.textContent = message;
+    status.classList.toggle("text-red-700", isError);
+  }
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Build the payload first: disabled controls are left out of FormData.
+    const body = JSON.stringify(Object.fromEntries(new FormData(form)));
+
+    setSending(true);
+    show("Sending…");
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body,
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+
+      form.reset();
+      form.hidden = true;
+      if (success) {
+        success.hidden = false;
+        success.focus();
+      }
+    } catch {
+      show("Something went wrong. Please try again.", true);
+    } finally {
+      setSending(false);
+    }
+  });
+</script>

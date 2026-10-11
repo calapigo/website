@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { url } from "../data/site";
+import type { Metadata } from "../types";
+
+const meta: Metadata = {
+  title: "Packets",
+  description: "Free trombone teaching packets on tone, listening, intonation, and breaking down challenging passages.",
+};
+
+const packets = [
+  {
+    title: "Great Tone on the Trombone",
+    href: "https://drive.google.com/drive/folders/1pdyKHGRo5A45BYihH56OjEWzh40zlXls",
+    text: "In this packet, I discuss exercises and practice techniques to improve tone.",
+    sections: ["Listening", "Technique", "Playing LOTS of music", "Staying Patient and Enjoying the Process"],
+  },
+  {
+    title: "Trombone Album Recommendations",
+    href: "https://drive.google.com/file/d/12kKRVK62MkryBMdQsRP30lewjC9MbWFs/view?usp=drive_link",
+    text: "Listening to music is vital for playing. The trombone is such a flexible instrument and is seen in a huge variety of music. I wanted to make a playlist that showed the trombone in as many genres as possible. This packet has short summaries of each album and you can find the playlists on the Resources page.",
+    sections: [],
+  },
+  {
+    title: "All About Intonation",
+    href: "https://drive.google.com/file/d/13b7ICSJl4Eg8PR-rvZMpTIHjV1V2HxRq/view?usp=drive_link",
+    text: "Intonation is much more than having the needle at the center of the tuner. In this packet, I discuss the complexity of tuning and exercises to improve intonation.",
+    sections: [
+      "What is intonation?",
+      "How do we tune on the trombone?",
+      "Adjusting for different partials",
+      "Adjusting for certain intervals",
+      "How do we practice intonation?",
+    ],
+  },
+  {
+    title: "Breaking Down Challenging Passages",
+    href: "https://drive.google.com/file/d/1TUgfeQhgam8D6cMP_-T-pfNqTnVRUkku/view?usp=drive_link",
+    text: "I believe that hard passages need to be slowed down, simplified, and shortened into “chunks” in order to gain consistency. In this packet, I discuss techniques to take a daunting passage into attainable steps.",
+    sections: [
+      "Fast vs. Slow Practice",
+      "Breaking things into chunks",
+      "Isolating rhythm",
+      "Taking things down an octave",
+      "Exercises to work on a passage",
+      "Practice away from an instrument",
+    ],
+  },
+];
+---
+
+<Layout {meta}>
+  <h1>Packets</h1>
+  <p class="lead">
+    These are the packets I use with my high school students to teach bigger ideas, and they’re a good reference when
+    you’re stuck. For more free materials, see the <a href={url("/resources/")}>Resources</a> page.
+  </p>
+
+  {packets.map(({ title, href, text, sections }, i) => (
+    <section>
+      <h2>
+        <a href={href} target="_blank" rel="noopener noreferrer">
+          {i + 1}) {title}
+        </a>
+      </h2>
+      <p>{text}</p>
+      {sections.length > 0 && (
+        <>
+          <p>
+            <strong>Sections</strong>
+          </p>
+          <ol>
+            {sections.map((s) => (
+              <li>{s}</li>
+            ))}
+          </ol>
+        </>
+      )}
+    </section>
+  ))}
+</Layout>
