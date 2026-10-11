@@ -4,6 +4,7 @@
 @theme {
   --color-coral-blue: #b8daf3;
   --color-wine: #4c2338;
+  --color-foreground: #ffffffe3;
 }
 
 @theme inline {
